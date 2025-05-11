@@ -1,6 +1,8 @@
 object nave {
     var pasajeros = #{neo, trinity, morfeo}
 
+    method pasajeros() = pasajeros
+
     method pasajeroMayorVitalidad(){
         return pasajeros.max({p => p.vitalidad()})
     }
@@ -14,11 +16,12 @@ object nave {
     }
 
     method naveChoca(){
+        pasajeros.forEach({p => p.saltar()})
         pasajeros.clear()
     }
 
     method naveAcelera(){
-        pasajeros.forEach(pasajeros.any({p => not p.esElElegido()}))
+        pasajeros.filter({p => not p.esElElegido()}).forEach({p => p.saltar()})
     }
 }
 
@@ -51,7 +54,7 @@ method vitalidad() = vitalidad
 method estaDescansado() = estaDescansado
 
 method saltar(){
-   estaDescansado != estaDescansado 
+   estaDescansado = not estaDescansado 
    vitalidad = (vitalidad - 1).max(0)
 }
 
@@ -61,7 +64,10 @@ method saltar(){
 
 object trinity {
 var vitalidad = 0
+const esElElegido = false
+
 method vitalidad() = vitalidad
 method saltar() {}
+method esElElegido() = esElElegido
 
 }

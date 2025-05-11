@@ -1,9 +1,23 @@
+import matrix.*
 
+describe "la matrix" {
 
-describe "group of tests " {
-
-  test "test 01" {
-    assert.equals(100, 50+50)
+  test "todos saltan de la emocion" {
+    nave.naveAcelera()
+    assert.equals(false, morfeo.estaDescansado())
+  }
+  
+  test "la nave choca"{
+    nave.naveChoca()
+    assert.equals(50, neo.energia())
   }
 
+  test "la nave choca y no quedan pasajeros"{
+    nave.naveChoca()
+    assert.equals({}, nave.pasajeros())
+  }
+
+  test "neo es el elegido"{
+    assert.equals(true, neo.esElElegido())
+  }
 }
